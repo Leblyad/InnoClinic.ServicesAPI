@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Core\Entities\Configuration\" />
     <Folder Include="Core\Services\" />
   </ItemGroup>
 

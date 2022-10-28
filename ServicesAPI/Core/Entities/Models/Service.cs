@@ -6,6 +6,7 @@
         public string ServiceName { get; set; }
         public float Price { get; set; }
         public string SpecializationName { get; set; }
+        public Guid ServiceCategoryId { get; set; }
         public ServiceCategory Category { get; set; }
     }
 }
