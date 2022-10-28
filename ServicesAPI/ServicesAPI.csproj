@@ -13,7 +13,7 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Core\Entities\Configuration\" />
-    <Folder Include="Core\Services\" />
+    <Folder Include="Core\Repository\" />
   </ItemGroup>
 
 </Project>

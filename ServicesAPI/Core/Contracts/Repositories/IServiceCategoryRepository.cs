@@ -1,6 +1,6 @@
 ﻿using ServicesAPI.Core.Entities.Models;
 
-namespace ServicesAPI.Core.Contracts
+namespace ServicesAPI.Core.Contracts.Repositories
 {
     public interface IServiceCategoryRepository
     {
