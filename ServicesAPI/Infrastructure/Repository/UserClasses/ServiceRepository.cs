@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServicesAPI.Core.Contracts.Repositories;
-using ServicesAPI.Core.Entities;
 using ServicesAPI.Core.Entities.Models;
+using ServicesAPI.Infrastructure.Repository;
 
 namespace ServicesAPI.Core.Repository.UserClasses
 {

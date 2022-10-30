@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Entities;
+using ServicesAPI.Infrastructure.Repository;
 using System.Linq.Expressions;
 
 

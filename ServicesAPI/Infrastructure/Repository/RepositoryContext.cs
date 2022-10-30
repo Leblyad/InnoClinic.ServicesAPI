@@ -2,16 +2,16 @@
 using ServicesAPI.Core.Entities.Configuration;
 using ServicesAPI.Core.Entities.Models;
 
-namespace ServicesAPI.Core.Entities
+namespace ServicesAPI.Infrastructure.Repository
 {
     public class RepositoryContext : DbContext
     {
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
 
-        public RepositoryContext(DbContextOptions options) 
+        public RepositoryContext(DbContextOptions options)
             : base(options)
-        { 
+        {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
