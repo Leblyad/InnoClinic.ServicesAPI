@@ -1,33 +1,38 @@
-﻿using ServicesAPI.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using ServicesAPI.Core.Contracts;
+using ServicesAPI.Core.Entities;
 using System.Linq.Expressions;
+
 
 namespace ServicesAPI.Core.Repository
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        public void Create(T entity)
+        protected RepositoryContext RepositoryContext;
+
+        public RepositoryBase(RepositoryContext repositoryContext)
         {
-            throw new NotImplementedException();
+            RepositoryContext = repositoryContext;
         }
 
-        public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public void Create(T entity) => RepositoryContext.Set<T>().Add(entity);
 
-        public IQueryable<T> FindAll(bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        public void Delete(T entity) => RepositoryContext.Set<T>().Remove(entity);
 
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<T> FindAll(bool trackChanges) =>
+            !trackChanges ?
+            RepositoryContext.Set<T>()
+            .AsNoTracking() :
+            RepositoryContext.Set<T>();
 
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
+            trackChanges ?
+            RepositoryContext.Set<T>()
+            .Where(expression)
+            .AsNoTracking() :
+            RepositoryContext.Set<T>()
+            .Where(expression);
+
+        public void Update(T entity) => RepositoryContext.Set<T>().Update(entity);
     }
 }
