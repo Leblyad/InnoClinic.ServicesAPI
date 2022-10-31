@@ -1,4 +1,6 @@
-﻿namespace ServicesAPI.Core.Services.Abstractions
+﻿using ServicesAPI.Core.Services.Abstractions.UserServices;
+
+namespace ServicesAPI.Core.Services.Abstractions
 {
     public interface IServiceManager
     {

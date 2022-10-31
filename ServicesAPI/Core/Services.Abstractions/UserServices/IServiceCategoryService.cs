@@ -1,6 +1,6 @@
 ﻿using ServicesAPI.Core.Entities.DataTransferObject;
 
-namespace ServicesAPI.Core.Services.Abstractions
+namespace ServicesAPI.Core.Services.Abstractions.UserServices
 {
     public interface IServiceCategoryService
     {

@@ -2,7 +2,7 @@
 using ServicesAPI.Core.Contracts;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Services.Abstractions;
+using ServicesAPI.Core.Services.Abstractions.UserServices;
 
 namespace ServicesAPI.Core.Services.UserServices
 {
