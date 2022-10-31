@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ServicesAPI.Core.Contracts;
 using ServicesAPI.Core.Entities.DataTransferObject;
+using ServicesAPI.Core.Entities.Models;
 using ServicesAPI.Core.Services.Abstractions.UserServices;
 
 namespace ServicesAPI.Core.Services.UserServices
@@ -16,29 +17,51 @@ namespace ServicesAPI.Core.Services.UserServices
             _mapper = mapper;
         }
 
-        public Task<ServiceDto> CreateService(ServiceCategoryForCreationDto serviceCategory)
+        public async Task<ServiceCategoryDto> CreateServiceCategory(ServiceCategoryForCreationDto serviceCategory)
         {
-            throw new NotImplementedException();
+            var serviceCategoryEntity = _mapper.Map<ServiceCategory>(serviceCategory);
+
+            _repositoryManager.ServiceCategory.CreateServiceCategory(serviceCategoryEntity);
+            await _repositoryManager.SaveAsync();
+
+            var serviceCategoryDto = _mapper.Map<ServiceCategoryDto>(serviceCategoryEntity);
+
+            return serviceCategoryDto;
         }
 
-        public Task DeleteService(Guid serviceCategoryId)
+        public async Task DeleteServiceCategory(Guid serviceCategoryId)
         {
-            throw new NotImplementedException();
+            var serviceCategory = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: false);
+
+            _repositoryManager.ServiceCategory.DeleteServiceCategory(serviceCategory);
+            await _repositoryManager.SaveAsync();
         }
 
-        public Task<IEnumerable<ServiceDto>> GetAllServicesAsync()
+        public async Task<IEnumerable<ServiceCategoryDto>> GetAllServiceCategoriesAsync()
         {
-            throw new NotImplementedException();
+            var serviceCategories = await _repositoryManager.ServiceCategory.GetAllServiceCategoriesAsync(trackChanges: false);
+
+            var serviceCategoriesDto = _mapper.Map<IEnumerable<ServiceCategoryDto>>(serviceCategories);
+
+            return serviceCategoriesDto;
         }
 
-        public Task<ServiceDto> GetServiceAsync(Guid serviceCategoryId)
+        public async Task<ServiceCategoryDto> GetServiceCategoryAsync(Guid serviceCategoryId)
         {
-            throw new NotImplementedException();
+            var serviceCategoryEntity = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: false);
+
+            var serviceCategoryDto = _mapper.Map<ServiceCategoryDto>(serviceCategoryEntity);
+
+            return serviceCategoryDto;
         }
 
-        public Task UpdateService(Guid serviceCategoryId, ServiceCategoryForUpdateDto serviceCategory)
+        public async Task UpdateServiceCategory(Guid serviceCategoryId, ServiceCategoryForUpdateDto serviceCategory)
         {
-            throw new NotImplementedException();
+            var serviceCategoryEntity = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: false);
+            serviceCategoryEntity = _mapper.Map<ServiceCategory>(serviceCategory);
+
+            _repositoryManager.ServiceCategory.UpdateServiceCategory(serviceCategoryEntity);
+            await _repositoryManager.SaveAsync();
         }
     }
 }

@@ -7,11 +7,11 @@ namespace ServicesAPI.Controllers
 {
     [Route("api/service")]
     [ApiController]
-    public class ServiceController : ControllerBase
+    public class ServicesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
 
-        public ServiceController(IServiceManager serviceManager)
+        public ServicesController(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
         }
