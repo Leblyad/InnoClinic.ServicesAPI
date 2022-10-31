@@ -6,6 +6,7 @@ namespace ServicesAPI.Core.Contracts.Repositories
     {
         Task<IEnumerable<Service>> GetAllServicesAsync(bool trackChanges);
         Task<Service> GetServiceAsync(Guid serviceId,bool trackChanges);
+        void UpdateService(Service service);
         void CreateService(Service service);
         void DeleteService(Service service);
     }

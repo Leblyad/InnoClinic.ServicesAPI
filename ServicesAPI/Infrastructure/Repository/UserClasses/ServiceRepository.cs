@@ -15,6 +15,8 @@ namespace ServicesAPI.Core.Repository.UserClasses
         public void CreateService(Service service) => Create(service);
 
         public void DeleteService(Service service) => Delete(service);
+        
+        public void UpdateService(Service service) => Update(service);
 
         public async Task<IEnumerable<Service>> GetAllServicesAsync(bool trackChanges) =>
             await FindAll(trackChanges)

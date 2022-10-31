@@ -16,6 +16,8 @@ namespace ServicesAPI.Core.Repository.UserClasses
 
         public void DeleteServiceCategory(ServiceCategory serviceCategory) => Delete(serviceCategory);
 
+        public void UpdateServiceCategory(ServiceCategory serviceCategory) => Update(serviceCategory);
+
         public async Task<IEnumerable<ServiceCategory>> GetAllServiceCategoriesAsync(bool trackChanges) =>
             await FindAll(trackChanges)
             .OrderBy(category => category.CategoryName)
