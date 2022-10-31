@@ -1,10 +1,11 @@
-﻿using ServicesAPI.Core.Contracts.Repositories;
+﻿using ServicesAPI.Core.Contracts;
+using ServicesAPI.Core.Contracts.Repositories;
 using ServicesAPI.Core.Repository.UserClasses;
 using ServicesAPI.Infrastructure.Repository;
 
 namespace ServicesAPI.Core.Repository
 {
-    public class RepositoryManager
+    public class RepositoryManager : IRepositoryManager
     {
         private RepositoryContext _repositoryContext;
         private IServiceRepository _serviceRepository;
@@ -35,5 +36,7 @@ namespace ServicesAPI.Core.Repository
                 return _serviceCategoryRepository;
             }
         }
+
+        public Task SaveAsync() => _repositoryContext.SaveChangesAsync();
     }
 }
