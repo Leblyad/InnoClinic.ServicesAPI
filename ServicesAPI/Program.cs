@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using ServicesAPI.Extensions;
+using ServicesAPI.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureCors();
 builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureServiceManager();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

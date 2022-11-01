@@ -6,6 +6,6 @@ namespace ServicesAPI.Core.Entities.DataTransferObject
     {
         public Guid Id { get; set; }
         public string CategoryName { get; set; }
-        public TimeOnly TimeSlotSize { get; set; }
+        public int TimeSlotSize { get; set; }
     }
 }
