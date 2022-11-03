@@ -17,50 +17,40 @@ namespace ServicesAPI.Core.Services.UserServices
             _mapper = mapper;
         }
 
-        public async Task<ServiceDto> CreateService(ServiceForCreationDto service)
+        public async Task<ServiceDto> CreateServiceAsync(ServiceForCreationDto service)
         {
             var serviceEntity = _mapper.Map<Service>(service);
+            await _repositoryManager.Service.CreateServiceAsync(serviceEntity);
 
-            _repositoryManager.Service.CreateService(serviceEntity);
-            await _repositoryManager.SaveAsync();
-
-            var serviceDto = _mapper.Map<ServiceDto>(serviceEntity);
-
-            return serviceDto;
+            return _mapper.Map<ServiceDto>(serviceEntity);
         }
 
-        public async Task DeleteService(Guid serviceId)
+        public async Task DeleteServiceAsync(Guid serviceId)
         {
             var service = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: false);
 
-            _repositoryManager.Service.DeleteService(service);
-            await _repositoryManager.SaveAsync();
+            await _repositoryManager.Service.DeleteServiceAsync(service);
         }
 
         public async Task<IEnumerable<ServiceDto>> GetAllServicesAsync()
         {
             var services = await _repositoryManager.Service.GetAllServicesAsync(trackChanges: false);
 
-            var servicesDto = _mapper.Map<IEnumerable<ServiceDto>>(services);
-
-            return servicesDto;
+            return _mapper.Map<IEnumerable<ServiceDto>>(services);
         }
 
         public async Task<ServiceDto> GetServiceAsync(Guid serviceId)
         {
             var service = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: false);
 
-            var serviceDto = _mapper.Map<ServiceDto>(service);
-
-            return serviceDto;
+            return _mapper.Map<ServiceDto>(service);
         }
 
-        public async Task UpdateService(Guid serviceId, ServiceForUpdateDto service)
+        public async Task UpdateServiceAsync(Guid serviceId, ServiceForUpdateDto service)
         {
-            var serviceEntity = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: false);
-            serviceEntity = _mapper.Map<Service>(service);
+            var serviceEntity = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: true);
+            _mapper.Map(service, serviceEntity);
 
-            _repositoryManager.Service.UpdateService(serviceEntity);
             await _repositoryManager.SaveAsync();
         }
     }

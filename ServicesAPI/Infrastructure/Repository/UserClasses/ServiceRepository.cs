@@ -9,23 +9,29 @@ namespace ServicesAPI.Core.Repository.UserClasses
     {
         public ServiceRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
-        {  
+        {
         }
 
-        public void CreateService(Service service) => Create(service);
+        public async Task CreateServiceAsync(Service service)
+        {
+            Create(service);
+            await RepositoryContext.SaveChangesAsync();
+        }
 
-        public void DeleteService(Service service) => Delete(service);
-        
-        public void UpdateService(Service service) => Update(service);
+        public async Task DeleteServiceAsync(Service service)
+        {
+            Delete(service);
+            await RepositoryContext.SaveChangesAsync();
+        }
 
         public async Task<IEnumerable<Service>> GetAllServicesAsync(bool trackChanges) =>
             await FindAll(trackChanges)
-            .Include(serviceCategory => serviceCategory.Category)
+            .Include(serviceCategory => serviceCategory.ServiceCategory)
             .ToListAsync();
 
         public async Task<Service> GetServiceAsync(Guid serviceId, bool trackChanges) =>
             await FindByCondition(service => service.Id.Equals(serviceId), trackChanges)
-            .Include(service => service.Category)
+            .Include(service => service.ServiceCategory)
             .SingleOrDefaultAsync();
     }
 }

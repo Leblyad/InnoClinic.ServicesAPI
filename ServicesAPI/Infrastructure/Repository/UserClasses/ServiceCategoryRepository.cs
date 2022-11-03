@@ -12,11 +12,17 @@ namespace ServicesAPI.Core.Repository.UserClasses
         {
         }
 
-        public void CreateServiceCategory(ServiceCategory serviceCategory) => Create(serviceCategory);
+        public async Task CreateServiceCategoryAsync(ServiceCategory serviceCategory)
+        {
+            Create(serviceCategory);
+            await RepositoryContext.SaveChangesAsync();
+        }
 
-        public void DeleteServiceCategory(ServiceCategory serviceCategory) => Delete(serviceCategory);
-
-        public void UpdateServiceCategory(ServiceCategory serviceCategory) => Update(serviceCategory);
+        public async Task DeleteServiceCategoryAsync(ServiceCategory serviceCategory)
+        {
+            Delete(serviceCategory);
+            await RepositoryContext.SaveChangesAsync();
+        }
 
         public async Task<IEnumerable<ServiceCategory>> GetAllServiceCategoriesAsync(bool trackChanges) =>
             await FindAll(trackChanges)

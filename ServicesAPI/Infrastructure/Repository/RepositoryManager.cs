@@ -18,11 +18,12 @@ namespace ServicesAPI.Core.Repository
 
         public IServiceRepository Service
         {
-            get {
+            get
+            {
                 if (_serviceRepository == null)
                     _serviceRepository = new ServiceRepository(_repositoryContext);
 
-                return _serviceRepository; 
+                return _serviceRepository;
             }
         }
 

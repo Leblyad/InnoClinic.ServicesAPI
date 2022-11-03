@@ -6,8 +6,8 @@ namespace ServicesAPI.Core.Services.Abstractions.UserServices
     {
         Task<IEnumerable<ServiceDto>> GetAllServicesAsync();
         Task<ServiceDto> GetServiceAsync(Guid serviceId);
-        Task<ServiceDto> CreateService(ServiceForCreationDto service);
-        Task UpdateService(Guid serviceId, ServiceForUpdateDto service);
-        Task DeleteService(Guid serviceId);
+        Task<ServiceDto> CreateServiceAsync(ServiceForCreationDto service);
+        Task UpdateServiceAsync(Guid serviceId, ServiceForUpdateDto service);
+        Task DeleteServiceAsync(Guid serviceId);
     }
 }

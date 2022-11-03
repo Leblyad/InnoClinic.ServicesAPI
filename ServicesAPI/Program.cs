@@ -1,7 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using ServicesAPI.Extensions;
-using ServicesAPI.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

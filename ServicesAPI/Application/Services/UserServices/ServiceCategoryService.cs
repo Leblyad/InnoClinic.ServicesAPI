@@ -17,50 +17,40 @@ namespace ServicesAPI.Core.Services.UserServices
             _mapper = mapper;
         }
 
-        public async Task<ServiceCategoryDto> CreateServiceCategory(ServiceCategoryForCreationDto serviceCategory)
+        public async Task<ServiceCategoryDto> CreateServiceCategoryAsync(ServiceCategoryForCreationDto serviceCategory)
         {
             var serviceCategoryEntity = _mapper.Map<ServiceCategory>(serviceCategory);
+            await _repositoryManager.ServiceCategory.CreateServiceCategoryAsync(serviceCategoryEntity);
 
-            _repositoryManager.ServiceCategory.CreateServiceCategory(serviceCategoryEntity);
-            await _repositoryManager.SaveAsync();
-
-            var serviceCategoryDto = _mapper.Map<ServiceCategoryDto>(serviceCategoryEntity);
-
-            return serviceCategoryDto;
+            return _mapper.Map<ServiceCategoryDto>(serviceCategoryEntity);
         }
 
-        public async Task DeleteServiceCategory(Guid serviceCategoryId)
+        public async Task DeleteServiceCategoryAsync(Guid serviceCategoryId)
         {
             var serviceCategory = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: false);
 
-            _repositoryManager.ServiceCategory.DeleteServiceCategory(serviceCategory);
-            await _repositoryManager.SaveAsync();
+            await _repositoryManager.ServiceCategory.DeleteServiceCategoryAsync(serviceCategory);
         }
 
         public async Task<IEnumerable<ServiceCategoryDto>> GetAllServiceCategoriesAsync()
         {
             var serviceCategories = await _repositoryManager.ServiceCategory.GetAllServiceCategoriesAsync(trackChanges: false);
 
-            var serviceCategoriesDto = _mapper.Map<IEnumerable<ServiceCategoryDto>>(serviceCategories);
-
-            return serviceCategoriesDto;
+            return _mapper.Map<IEnumerable<ServiceCategoryDto>>(serviceCategories);
         }
 
         public async Task<ServiceCategoryDto> GetServiceCategoryAsync(Guid serviceCategoryId)
         {
             var serviceCategoryEntity = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: false);
 
-            var serviceCategoryDto = _mapper.Map<ServiceCategoryDto>(serviceCategoryEntity);
-
-            return serviceCategoryDto;
+            return _mapper.Map<ServiceCategoryDto>(serviceCategoryEntity);
         }
 
-        public async Task UpdateServiceCategory(Guid serviceCategoryId, ServiceCategoryForUpdateDto serviceCategory)
+        public async Task UpdateServiceCategoryAsync(Guid serviceCategoryId, ServiceCategoryForUpdateDto serviceCategory)
         {
-            var serviceCategoryEntity = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: false);
-            serviceCategoryEntity = _mapper.Map<ServiceCategory>(serviceCategory);
+            var serviceCategoryEntity = await _repositoryManager.ServiceCategory.GetServiceCategoryAsync(serviceCategoryId, trackChanges: true);
+            _mapper.Map(serviceCategory, serviceCategoryEntity);
 
-            _repositoryManager.ServiceCategory.UpdateServiceCategory(serviceCategoryEntity);
             await _repositoryManager.SaveAsync();
         }
     }
