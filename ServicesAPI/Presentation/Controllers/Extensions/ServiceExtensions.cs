@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using ServicesAPI.Core.Contracts;
+using ServicesAPI.Core.Entities.Models;
 using ServicesAPI.Core.Repository;
 using ServicesAPI.Core.Services;
 using ServicesAPI.Core.Services.Abstractions;
 using ServicesAPI.Infrastructure.Repository;
+using ServicesAPI.Presentation.Middlewares;
+using System.Net;
 
 namespace ServicesAPI.Extensions
 {
@@ -29,5 +33,10 @@ namespace ServicesAPI.Extensions
             services.AddDbContext<RepositoryContext>(opts =>
             opts.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b =>
             b.MigrationsAssembly("ServicesAPI")));
+
+        public static void ConfigureCustomExceptionHandler(this IServiceCollection services)
+        {
+            services.AddTransient<ExceptionHandlingMiddleware>();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using ServicesAPI.Core.Contracts;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Entities.Models;
+using ServicesAPI.Core.Exceptions.UserClassExceptions;
 using ServicesAPI.Core.Services.Abstractions.UserServices;
 
 namespace ServicesAPI.Core.Services.UserServices
@@ -27,21 +28,31 @@ namespace ServicesAPI.Core.Services.UserServices
 
         public async Task DeleteServiceAsync(Guid serviceId)
         {
-            var service = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: false);
+            var service = await _repositoryManager.Service.GetServiceAsync(serviceId);
+
+            if(service == null)
+            {
+                throw new ServiceNotFoundException(serviceId);
+            }
 
             await _repositoryManager.Service.DeleteServiceAsync(service);
         }
 
         public async Task<IEnumerable<ServiceDto>> GetAllServicesAsync()
         {
-            var services = await _repositoryManager.Service.GetAllServicesAsync(trackChanges: false);
+            var services = await _repositoryManager.Service.GetAllServicesAsync();
 
             return _mapper.Map<IEnumerable<ServiceDto>>(services);
         }
 
         public async Task<ServiceDto> GetServiceAsync(Guid serviceId)
         {
-            var service = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: false);
+            var service = await _repositoryManager.Service.GetServiceAsync(serviceId);
+
+            if (service == null)
+            {
+                throw new ServiceNotFoundException(serviceId);
+            }
 
             return _mapper.Map<ServiceDto>(service);
         }
@@ -49,6 +60,12 @@ namespace ServicesAPI.Core.Services.UserServices
         public async Task UpdateServiceAsync(Guid serviceId, ServiceForUpdateDto service)
         {
             var serviceEntity = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: true);
+
+            if (serviceEntity == null)
+            {
+                throw new ServiceNotFoundException(serviceId);
+            }
+
             _mapper.Map(service, serviceEntity);
 
             await _repositoryManager.SaveAsync();

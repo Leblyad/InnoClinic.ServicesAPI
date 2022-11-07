@@ -6,7 +6,7 @@ namespace ServicesAPI.Services.MappingProfiles
 {
     public class ServiceCategoryMappingProfile : Profile
     {
-        protected ServiceCategoryMappingProfile()
+        public ServiceCategoryMappingProfile()
         {
             CreateMap<ServiceCategory, ServiceCategoryDto>();
 

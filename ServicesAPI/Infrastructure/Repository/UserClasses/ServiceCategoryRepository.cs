@@ -29,8 +29,8 @@ namespace ServicesAPI.Core.Repository.UserClasses
             .OrderBy(category => category.CategoryName)
             .ToListAsync();
 
-        public async Task<ServiceCategory> GetServiceCategoryAsync(Guid serviceCategory, bool trackChanges) =>
-            await FindByCondition(serviceCategory => serviceCategory.Id.Equals(serviceCategory), trackChanges)
+        public async Task<ServiceCategory> GetServiceCategoryAsync(Guid serviceCategoryId, bool trackChanges) =>
+            await FindByCondition(serviceCategory => serviceCategory.Id.Equals(serviceCategoryId), trackChanges)
             .SingleOrDefaultAsync();
     }
 }
