@@ -5,8 +5,12 @@ namespace ServicesAPI.Presentation.Middlewares
 {
     public sealed class ExceptionHandlingMiddleware : IMiddleware
     {
-        public ExceptionHandlingMiddleware()
-        { }
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+
+        public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
+        {
+            _logger = logger;
+        }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
@@ -16,6 +20,8 @@ namespace ServicesAPI.Presentation.Middlewares
             }
             catch (Exception e)
             {
+                _logger.LogError(e, e.Message);
+
                 await HandleExceptionAsync(context, e);
             }
         }
