@@ -1,45 +1,41 @@
-﻿using ServicesAPI.Core.Exceptions;
-using System.Text.Json;
+﻿using ServicesAPI.Core.Entities.Models;
+using ServicesAPI.Core.Exceptions;
+using System.Net;
 
 namespace ServicesAPI.Presentation.Middlewares
 {
-    public sealed class ExceptionHandlingMiddleware : IMiddleware
+    public sealed class ExceptionHandlingMiddleware
     {
-        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
-
-        public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
+        private readonly RequestDelegate _next;
+        public ExceptionHandlingMiddleware(RequestDelegate next)
         {
-            _logger = logger;
+            _next = next;
         }
-
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                await next(context);
+                await _next(httpContext);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                _logger.LogError(e, e.Message);
-
-                await HandleExceptionAsync(context, e);
+                await HandleExceptionAsync(httpContext, ex);
             }
         }
-
-        private static async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            httpContext.Response.ContentType = "application/json";
-            httpContext.Response.StatusCode = exception switch
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = exception switch
             {
                 BadRequestException => StatusCodes.Status400BadRequest,
                 NotFoundException => StatusCodes.Status404NotFound,
                 _ => StatusCodes.Status500InternalServerError
             };
-            var response = new
+            await context.Response.WriteAsync(new ErrorDetails()
             {
-                error = exception.Message
-            };
-            await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
+                StatusCode = context.Response.StatusCode,
+                Message = exception.Message
+            }.ToString());
         }
     }
 }

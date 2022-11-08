@@ -35,9 +35,9 @@ namespace ServicesAPI.Extensions
             opts.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b =>
             b.MigrationsAssembly("ServicesAPI")));
 
-        public static void ConfigureCustomExceptionHandler(this IServiceCollection services)
+        public static void ConfigureExceptionHandler(this IApplicationBuilder app)
         {
-            services.AddTransient<ExceptionHandlingMiddleware>();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
         }
 
         public static void ConfigureLogger(this ILoggingBuilder logging, IConfiguration configuration)
