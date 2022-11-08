@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using ServicesAPI.Core.Contracts;
 using ServicesAPI.Core.Entities.Models;
 using ServicesAPI.Core.Repository;
@@ -37,6 +38,16 @@ namespace ServicesAPI.Extensions
         public static void ConfigureExceptionHandler(this IApplicationBuilder app)
         {
             app.UseMiddleware<ExceptionHandlingMiddleware>();
+        }
+
+        public static void ConfigureLogger(this ILoggingBuilder logging, IConfiguration configuration)
+        {
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+            logging.ClearProviders();
+            logging.AddSerilog(logger);
         }
     }
 }

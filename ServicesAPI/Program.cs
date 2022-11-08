@@ -4,6 +4,8 @@ using ServicesAPI.Presentation.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Logging.ConfigureLogger(builder.Configuration);
+builder.Services.ConfigureCustomExceptionHandler();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureCors();
 builder.Services.ConfigureRepositoryManager();
