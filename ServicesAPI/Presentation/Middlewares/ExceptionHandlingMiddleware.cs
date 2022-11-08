@@ -37,6 +37,5 @@ namespace ServicesAPI.Presentation.Middlewares
                 Message = exception.Message
             }.ToString());
         }
-
     }
 }

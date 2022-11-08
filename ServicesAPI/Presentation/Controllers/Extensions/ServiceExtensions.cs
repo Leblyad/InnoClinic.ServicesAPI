@@ -33,5 +33,10 @@ namespace ServicesAPI.Extensions
             services.AddDbContext<RepositoryContext>(opts =>
             opts.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b =>
             b.MigrationsAssembly("ServicesAPI")));
+
+        public static void ConfigureExceptionHandler(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+        }
     }
 }
