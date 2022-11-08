@@ -6,8 +6,8 @@ namespace ServicesAPI.Core.Services.Abstractions.UserServices
     {
         Task<IEnumerable<ServiceCategoryDto>> GetAllServiceCategoriesAsync();
         Task<ServiceCategoryDto> GetServiceCategoryAsync(Guid serviceCategoryId);
-        Task<ServiceCategoryDto> CreateServiceCategory(ServiceCategoryForCreationDto serviceCategory);
-        Task UpdateServiceCategory(Guid serviceCategoryId, ServiceCategoryForUpdateDto serviceCategory);
-        Task DeleteServiceCategory(Guid serviceCategoryId);
+        Task<ServiceCategoryDto> CreateServiceCategoryAsync(ServiceCategoryForCreationDto serviceCategory);
+        Task UpdateServiceCategoryAsync(Guid serviceCategoryId, ServiceCategoryForUpdateDto serviceCategory);
+        Task DeleteServiceCategoryAsync(Guid serviceCategoryId);
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Services.Abstractions;
 
@@ -35,7 +34,7 @@ namespace ServicesAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateServiceCategory([FromBody] ServiceCategoryForCreationDto serviceCategoryForCreationDto)
         {
-            var serviceCategoryDto = await _serviceManager.CategoryService.CreateServiceCategory(serviceCategoryForCreationDto);
+            var serviceCategoryDto = await _serviceManager.CategoryService.CreateServiceCategoryAsync(serviceCategoryForCreationDto);
 
             return CreatedAtAction(nameof(GetServiceCategoryById), new { serviceCategoryId = serviceCategoryDto.Id }, serviceCategoryDto);
         }
@@ -43,7 +42,7 @@ namespace ServicesAPI.Controllers
         [HttpPut("{serviceCategoryId:guid}")]
         public async Task<IActionResult> UpdateServiceCategory(Guid serviceId, [FromBody] ServiceCategoryForUpdateDto serviceCategoryForUpdateDto)
         {
-            await _serviceManager.CategoryService.UpdateServiceCategory(serviceId, serviceCategoryForUpdateDto);
+            await _serviceManager.CategoryService.UpdateServiceCategoryAsync(serviceId, serviceCategoryForUpdateDto);
 
             return NoContent();
         }
@@ -51,7 +50,7 @@ namespace ServicesAPI.Controllers
         [HttpDelete("{serviceCategoryId:guid}")]
         public async Task<IActionResult> DeleteServiceCategory(Guid serviceCategoryId)
         {
-            await _serviceManager.CategoryService.DeleteServiceCategory(serviceCategoryId);
+            await _serviceManager.CategoryService.DeleteServiceCategoryAsync(serviceCategoryId);
 
             return NoContent();
         }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Services.Abstractions;
 
@@ -35,15 +34,15 @@ namespace ServicesAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateService([FromBody] ServiceForCreationDto serviceForCreationDto)
         {
-            var serviceDto = await _serviceManager.Service.CreateService(serviceForCreationDto);
+            var serviceDto = await _serviceManager.Service.CreateServiceAsync(serviceForCreationDto);
 
-            return CreatedAtAction(nameof(GetServiceById), new {serviceId = serviceDto.Id}, serviceDto);
+            return CreatedAtAction(nameof(GetServiceById), new { serviceId = serviceDto.Id }, serviceDto);
         }
 
         [HttpPut("{serviceId:guid}")]
         public async Task<IActionResult> UpdateService(Guid serviceId, [FromBody] ServiceForUpdateDto serviceForUpdateDto)
         {
-            await _serviceManager.Service.UpdateService(serviceId, serviceForUpdateDto);
+            await _serviceManager.Service.UpdateServiceAsync(serviceId, serviceForUpdateDto);
 
             return NoContent();
         }
@@ -51,7 +50,7 @@ namespace ServicesAPI.Controllers
         [HttpDelete("{serviceId:guid}")]
         public async Task<IActionResult> DeleteService(Guid serviceId)
         {
-            await _serviceManager.Service.DeleteService(serviceId);
+            await _serviceManager.Service.DeleteServiceAsync(serviceId);
 
             return NoContent();
         }

@@ -1,7 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using ServicesAPI.Extensions;
-using ServicesAPI.Infrastructure.Repository;
+using ServicesAPI.Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +17,14 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigureExceptionHandler();
 
 app.UseHttpsRedirection();
 

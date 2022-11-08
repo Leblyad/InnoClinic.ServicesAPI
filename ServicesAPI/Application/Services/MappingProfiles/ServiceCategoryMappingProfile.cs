@@ -2,18 +2,12 @@
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Entities.Models;
 
-namespace ServicesAPI.Infrastructure
+namespace ServicesAPI.Services.MappingProfiles
 {
-    public class MappingProfile : Profile
+    public class ServiceCategoryMappingProfile : Profile
     {
-        public MappingProfile()
+        public ServiceCategoryMappingProfile()
         {
-            CreateMap<Service, ServiceDto>();
-
-            CreateMap<ServiceForCreationDto, Service>();
-
-            CreateMap<ServiceForUpdateDto, Service>().ReverseMap();
-
             CreateMap<ServiceCategory, ServiceCategoryDto>();
 
             CreateMap<ServiceCategoryForCreationDto, ServiceCategory>();

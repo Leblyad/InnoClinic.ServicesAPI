@@ -1,6 +1,4 @@
-﻿using ServicesAPI.Core.Entities.Models;
-
-namespace ServicesAPI.Core.Entities.DataTransferObject
+﻿namespace ServicesAPI.Core.Entities.DataTransferObject
 {
     public class ServiceCategoryDto
     {
