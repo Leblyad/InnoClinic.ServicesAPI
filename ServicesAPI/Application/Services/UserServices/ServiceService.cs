@@ -2,6 +2,7 @@
 using ServicesAPI.Core.Contracts;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Entities.Models;
+using ServicesAPI.Core.Entities.QueryParameters;
 using ServicesAPI.Core.Exceptions.UserClassExceptions;
 using ServicesAPI.Core.Services.Abstractions.UserServices;
 
@@ -30,7 +31,7 @@ namespace ServicesAPI.Core.Services.UserServices
         {
             var service = await _repositoryManager.Service.GetServiceAsync(serviceId);
 
-            if(service == null)
+            if (service == null)
             {
                 throw new ServiceNotFoundException(serviceId);
             }
@@ -38,9 +39,9 @@ namespace ServicesAPI.Core.Services.UserServices
             await _repositoryManager.Service.DeleteServiceAsync(service);
         }
 
-        public async Task<IEnumerable<ServiceDto>> GetAllServicesAsync()
+        public async Task<IEnumerable<ServiceDto>> GetAllServicesAsync(ServiceParameters serviceParameters)
         {
-            var services = await _repositoryManager.Service.GetAllServicesAsync();
+            var services = await _repositoryManager.Service.GetAllServicesAsync(serviceParameters);
 
             return _mapper.Map<IEnumerable<ServiceDto>>(services);
         }

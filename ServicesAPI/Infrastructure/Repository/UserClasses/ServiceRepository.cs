@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServicesAPI.Core.Contracts.Repositories;
 using ServicesAPI.Core.Entities.Models;
+using ServicesAPI.Core.Entities.QueryParameters;
 using ServicesAPI.Infrastructure.Repository;
 
 namespace ServicesAPI.Core.Repository.UserClasses
@@ -24,7 +25,14 @@ namespace ServicesAPI.Core.Repository.UserClasses
             await RepositoryContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Service>> GetAllServicesAsync(bool trackChanges) =>
+        public async Task<IEnumerable<Service>> GetAllServicesAsync(ServiceParameters serviceParameters, bool trackChanges) =>
+            serviceParameters.PageNumber > 0
+            && serviceParameters.PageSize > 0 ?
+            await FindAll(trackChanges)
+            .Skip((serviceParameters.PageNumber - 1) * serviceParameters.PageSize)
+            .Take(serviceParameters.PageSize)
+            .Include(serviceCategory => serviceCategory.ServiceCategory)
+            .ToListAsync() :
             await FindAll(trackChanges)
             .Include(serviceCategory => serviceCategory.ServiceCategory)
             .ToListAsync();

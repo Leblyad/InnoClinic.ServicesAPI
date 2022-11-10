@@ -1,6 +1,4 @@
-﻿using ServicesAPI.Core.Entities.Models;
-
-namespace ServicesAPI.Core.Exceptions.UserClassExceptions
+﻿namespace ServicesAPI.Core.Exceptions.UserClassExceptions
 {
     public class ServiceCategoryNotFoundException : NotFoundException
     {
