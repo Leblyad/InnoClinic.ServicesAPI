@@ -40,9 +40,9 @@ namespace ServicesAPI.Controllers
         }
 
         [HttpPut("{serviceCategoryId:guid}")]
-        public async Task<IActionResult> UpdateServiceCategory(Guid serviceId, [FromBody] ServiceCategoryForUpdateDto serviceCategoryForUpdateDto)
+        public async Task<IActionResult> UpdateServiceCategory(Guid serviceCategoryId, [FromBody] ServiceCategoryForUpdateDto serviceCategoryForUpdateDto)
         {
-            await _serviceManager.CategoryService.UpdateServiceCategoryAsync(serviceId, serviceCategoryForUpdateDto);
+            await _serviceManager.CategoryService.UpdateServiceCategoryAsync(serviceCategoryId, serviceCategoryForUpdateDto);
 
             return NoContent();
         }
