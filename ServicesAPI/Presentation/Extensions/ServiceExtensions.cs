@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ServicesAPI.Core.Contracts;
@@ -9,6 +10,7 @@ using ServicesAPI.Core.Services.Abstractions;
 using ServicesAPI.Infrastructure.Repository;
 using ServicesAPI.Presentation.Middlewares;
 using System.Net;
+using System.Reflection;
 
 namespace ServicesAPI.Extensions
 {
@@ -48,6 +50,13 @@ namespace ServicesAPI.Extensions
                 .CreateLogger();
             logging.ClearProviders();
             logging.AddSerilog(logger);
+        }
+
+        public static void ConfigureValidatorsAndControllers(this IServiceCollection services)
+        {
+            services.AddControllers()
+                .AddFluentValidation(c =>
+                c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
         }
     }
 }
