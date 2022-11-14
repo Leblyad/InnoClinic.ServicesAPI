@@ -23,7 +23,7 @@ namespace ServicesAPI.Core.Repository
             !trackChanges ?
             RepositoryContext.Set<T>() :
             RepositoryContext.Set<T>()
-            .AsNoTracking() ;
+            .AsNoTracking();
 
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
             trackChanges ?

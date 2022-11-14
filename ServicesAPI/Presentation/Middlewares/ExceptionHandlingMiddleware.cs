@@ -1,6 +1,5 @@
 ﻿using ServicesAPI.Core.Entities.Models;
 using ServicesAPI.Core.Exceptions;
-using System.Net;
 
 namespace ServicesAPI.Presentation.Middlewares
 {

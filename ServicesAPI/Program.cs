@@ -1,7 +1,4 @@
-using FluentValidation.AspNetCore;
 using ServicesAPI.Extensions;
-using ServicesAPI.Presentation.Middlewares;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

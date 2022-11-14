@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.Models;
+﻿using ServicesAPI.Core.Entities.DataTransferObject;
 
 namespace ServicesAPI.Application.Services.Validation
 {

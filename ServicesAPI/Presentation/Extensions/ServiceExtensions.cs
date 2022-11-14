@@ -1,15 +1,12 @@
 ﻿using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Entities.Models;
 using ServicesAPI.Core.Repository;
 using ServicesAPI.Core.Services;
 using ServicesAPI.Core.Services.Abstractions;
 using ServicesAPI.Infrastructure.Repository;
 using ServicesAPI.Presentation.Middlewares;
-using System.Net;
 using System.Reflection;
 
 namespace ServicesAPI.Extensions

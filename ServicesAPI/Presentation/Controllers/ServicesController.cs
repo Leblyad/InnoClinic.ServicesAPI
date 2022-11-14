@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServicesAPI.Core.Entities.DataTransferObject;
+using ServicesAPI.Core.Entities.QueryParameters;
 using ServicesAPI.Core.Services.Abstractions;
 
 namespace ServicesAPI.Controllers
@@ -16,9 +17,9 @@ namespace ServicesAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetServices()
+        public async Task<IActionResult> GetServices([FromQuery] ServiceParameters serviceParameters)
         {
-            var servicesDto = await _serviceManager.Service.GetAllServicesAsync();
+            var servicesDto = await _serviceManager.Service.GetAllServicesAsync(serviceParameters);
 
             return Ok(servicesDto);
         }
