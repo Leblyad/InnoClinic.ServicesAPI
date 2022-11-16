@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Entities.QueryParameters;
 using ServicesAPI.Core.Services.Abstractions;
@@ -7,6 +8,7 @@ namespace ServicesAPI.Controllers
 {
     [Route("api/service")]
     [ApiController]
+
     public class ServicesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -17,6 +19,7 @@ namespace ServicesAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetServices([FromQuery] ServiceParameters serviceParameters)
         {
             var servicesDto = await _serviceManager.Service.GetAllServicesAsync(serviceParameters);
