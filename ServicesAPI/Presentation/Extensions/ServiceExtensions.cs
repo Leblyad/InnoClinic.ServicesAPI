@@ -1,7 +1,6 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using ServicesAPI.Core.Contracts;
@@ -92,7 +91,7 @@ namespace ServicesAPI.Extensions
                         { Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
+                                Id = "Bearer",
                             },
                             Name = "Bearer",
                         },

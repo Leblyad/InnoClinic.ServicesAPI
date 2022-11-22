@@ -18,8 +18,8 @@ namespace ServicesAPI.Controllers
             _serviceManager = serviceManager;
         }
 
+        [Authorize(Roles = "Doctor")]
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetServices([FromQuery] ServiceParameters serviceParameters)
         {
             var servicesDto = await _serviceManager.Service.GetAllServicesAsync(serviceParameters);
