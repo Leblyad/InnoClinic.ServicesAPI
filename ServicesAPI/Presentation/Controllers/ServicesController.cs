@@ -6,7 +6,7 @@ using ServicesAPI.Core.Services.Abstractions;
 
 namespace ServicesAPI.Controllers
 {
-    [Route("api/service")]
+    [Route("api/services")]
     [ApiController]
 
     public class ServicesController : ControllerBase
