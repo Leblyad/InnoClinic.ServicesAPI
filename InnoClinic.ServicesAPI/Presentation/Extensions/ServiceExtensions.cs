@@ -58,12 +58,12 @@ namespace ServicesAPI.Extensions
                 c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
         }
 
-        public static void ConfigureJWTAuthentification(this IServiceCollection services)
+        public static void ConfigureJWTAuthentification(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication("Bearer")
                     .AddJwtBearer("Bearer", options =>
                     {
-                        options.Authority = "https://localhost:7141";
+                        options.Authority = configuration.GetValue<string>("Routes:AuthorityRoute");
                         options.Audience = "APIClient";
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
