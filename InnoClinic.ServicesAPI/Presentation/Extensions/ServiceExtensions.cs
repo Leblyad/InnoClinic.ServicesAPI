@@ -1,4 +1,5 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -34,7 +35,7 @@ namespace ServicesAPI.Extensions
             IConfiguration configuration) =>
             services.AddDbContext<RepositoryContext>(opts =>
             opts.UseSqlServer(configuration.GetConnectionString("sqlConnection"), b =>
-            b.MigrationsAssembly("ServicesAPI")));
+            b.MigrationsAssembly("InnoClinic.ServicesAPI")));
 
         public static void ConfigureExceptionHandler(this IApplicationBuilder app)
         {
@@ -67,7 +68,8 @@ namespace ServicesAPI.Extensions
                         options.Audience = "APIClient";
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
-                            ValidateAudience = false
+                            ValidateAudience = true,
+                            ValidAudience = "APIClient"
                         };
                     });
         }

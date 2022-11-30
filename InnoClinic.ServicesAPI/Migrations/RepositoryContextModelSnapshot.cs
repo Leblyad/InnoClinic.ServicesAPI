@@ -48,7 +48,7 @@ namespace ServicesAPI.Migrations
 
                     b.HasIndex("ServiceCategoryId");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("ServicesAPI.Core.Entities.Models.ServiceCategory", b =>
@@ -67,7 +67,7 @@ namespace ServicesAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServiceCategories");
+                    b.ToTable("ServiceCategories", (string)null);
 
                     b.HasData(
                         new
