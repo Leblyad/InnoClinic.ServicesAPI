@@ -37,7 +37,7 @@ namespace InnoClinic.ServicesAPI.Tests.Services
         {
             //Arrange
             var servicesDto = new Mock<ServiceDto>().Object;
-            var serviceId = new Guid("8c6d093c-c52c-4a9b-709b-08dac166520c");
+            var serviceId = Guid.NewGuid();
             serviceMock.Setup(x => x.GetServiceAsync(serviceId)).ReturnsAsync(servicesDto);
             var service = serviceMock.Object;
 
@@ -46,6 +46,22 @@ namespace InnoClinic.ServicesAPI.Tests.Services
 
             //Assert
             Assert.NotNull(actual);
+        }
+
+        [Fact]
+        public async Task GetServiceAsync_ExistsingGuidPassed_ReturnsTypeOfServiceDto()
+        {
+            //Arrange
+            var servicesDto = new ServiceDto();
+            var serviceId = Guid.NewGuid();
+            serviceMock.Setup(x => x.GetServiceAsync(serviceId)).ReturnsAsync(servicesDto);
+            var service = serviceMock.Object;
+
+            //Act
+            var actual = await service.GetServiceAsync(serviceId);
+
+            //Assert
+            Assert.IsType<ServiceDto>(actual);
         }
 
         [Fact]
@@ -75,6 +91,22 @@ namespace InnoClinic.ServicesAPI.Tests.Services
 
             //Assert
             Assert.NotNull(actual);
+        }
+
+        [Fact]
+        public async Task CreateServiceAsync_ExistsingDtoForCreation_TypeOfReturnsServiceDto()
+        {
+            //Arrange
+            var serviceForCreation = new Mock<ServiceForCreationDto>().Object;
+            var servicesDto = new ServiceDto();
+            serviceMock.Setup(x => x.CreateServiceAsync(serviceForCreation)).ReturnsAsync(servicesDto);
+            var service = serviceMock.Object;
+
+            //Act
+            var actual = await service.CreateServiceAsync(serviceForCreation);
+
+            //Assert
+            Assert.IsType<ServiceDto>(actual);
         }
 
         [Fact]
