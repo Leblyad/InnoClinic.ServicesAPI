@@ -21,6 +21,11 @@ namespace ServicesAPI.Core.Services.UserServices
 
         public async Task<ServiceDto> CreateServiceAsync(ServiceForCreationDto service)
         {
+            if (service == null)
+            {
+                throw new ServiceBadRequestException();
+            }
+
             var serviceEntity = _mapper.Map<Service>(service);
             await _repositoryManager.Service.CreateServiceAsync(serviceEntity);
 
