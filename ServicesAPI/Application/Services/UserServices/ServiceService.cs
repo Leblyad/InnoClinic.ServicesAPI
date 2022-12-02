@@ -8,7 +8,7 @@ using ServicesAPI.Core.Services.Abstractions.UserServices;
 
 namespace ServicesAPI.Core.Services.UserServices
 {
-    internal sealed class ServiceService : IServiceService
+    public class ServiceService : IServiceService
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ namespace ServicesAPI.Core.Services.UserServices
         {
             if (service == null)
             {
-                throw new ServiceBadRequestException();
+                throw new ServiceNullReferenceException(typeof(ServiceForCreationDto));
             }
 
             var serviceEntity = _mapper.Map<Service>(service);
@@ -65,6 +65,11 @@ namespace ServicesAPI.Core.Services.UserServices
 
         public async Task UpdateServiceAsync(Guid serviceId, ServiceForUpdateDto service)
         {
+            if(service == null)
+            {
+                throw new ServiceNullReferenceException(typeof(ServiceForUpdateDto));
+            }
+
             var serviceEntity = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: true);
 
             if (serviceEntity == null)

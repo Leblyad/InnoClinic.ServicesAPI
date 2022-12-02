@@ -8,7 +8,7 @@ using ServicesAPI.Core.Services.Abstractions.UserServices;
 
 namespace ServicesAPI.Core.Services.UserServices
 {
-    public sealed class ServiceCategoryService : IServiceCategoryService
+    public class ServiceCategoryService : IServiceCategoryService
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
