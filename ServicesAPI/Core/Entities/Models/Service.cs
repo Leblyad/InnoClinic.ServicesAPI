@@ -18,6 +18,6 @@ namespace ServicesAPI.Core.Entities.Models
 
         [Required(ErrorMessage = "Service Category Id is required field.")]
         public Guid ServiceCategoryId { get; set; }
-        public ServiceCategory ServiceCategory { get; set; }
+        public virtual ServiceCategory ServiceCategory { get; set; }
     }
 }

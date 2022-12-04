@@ -5,9 +5,7 @@ using ServicesAPI.Core.Contracts;
 using ServicesAPI.Core.Entities.DataTransferObject;
 using ServicesAPI.Core.Entities.Models;
 using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Core.Exceptions;
 using ServicesAPI.Core.Exceptions.UserClassExceptions;
-using ServicesAPI.Core.Services.Abstractions.UserServices;
 using ServicesAPI.Core.Services.UserServices;
 
 namespace InnoClinic.ServicesAPI.Tests.Services

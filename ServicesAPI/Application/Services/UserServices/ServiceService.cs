@@ -65,7 +65,7 @@ namespace ServicesAPI.Core.Services.UserServices
 
         public async Task UpdateServiceAsync(Guid serviceId, ServiceForUpdateDto service)
         {
-            if(service == null)
+            if (service == null)
             {
                 throw new ServiceNullReferenceException(typeof(ServiceForUpdateDto));
             }
