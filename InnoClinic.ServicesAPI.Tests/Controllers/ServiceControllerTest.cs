@@ -1,18 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
-using System.Net.Http;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.AspNetCore.Mvc.Testing;
-using AutoFixture;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using System.Text.Json;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace InnoClinic.ServicesAPI.Tests.Controllers
 {
@@ -29,13 +18,13 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         }
 
         [Theory]
-        [InlineData(0,0)]
+        [InlineData(0, 0)]
         [InlineData(1, 5)]
         [InlineData(5, 10)]
         public async Task GetAllServices_WithValidParameters_ReturnsOk(int pageNumber, int pageSize)
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Get, 
+            var request = new HttpRequestMessage(HttpMethod.Get,
                 $"/api/service?PageNumber={pageNumber}&PageSize={pageSize}");
 
             //Act
@@ -52,7 +41,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         {
             //Arrange
             var request = new HttpRequestMessage(HttpMethod.Get, $"/api/service/{serviceId}");
-            
+
             //Act
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
