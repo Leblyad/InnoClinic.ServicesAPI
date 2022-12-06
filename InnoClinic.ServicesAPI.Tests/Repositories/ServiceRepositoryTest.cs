@@ -10,20 +10,26 @@ namespace InnoClinic.ServicesAPI.Tests.Repositories
 {
     public class ServiceRepositoryTest
     {
+        private readonly ServiceRepository serviceRepository;
+        private readonly Mock<RepositoryContext> repositoryContextMock;
+        public ServiceRepositoryTest()
+        {
+            repositoryContextMock = new Mock<RepositoryContext>();
+            serviceRepository = new ServiceRepository(repositoryContextMock.Object);
+        }
+
         [Fact]
         public async Task GetAllServicesAsync_WithDefaultParameters_ReturnsTenItems()
         {
             //Arrange
-            ServiceRepository service;
             var services = new Fixture().CreateMany<Service>(20).AsQueryable();
-            var repositoryContextMock = services.BuildMockDbSet();
+            var dbSetMock = services.BuildMockDbSet();
             var parameters = new ServiceParameters();
-            var contextMock = new Mock<RepositoryContext>();
-            contextMock.Setup(x => x.Set<Service>()).Returns(repositoryContextMock.Object);
-            service = new ServiceRepository(contextMock.Object);
+
+            repositoryContextMock.Setup(x => x.Set<Service>()).Returns(dbSetMock.Object);
 
             //Act
-            var serviceItems = await service.GetAllServicesAsync(parameters);
+            var serviceItems = await serviceRepository.GetAllServicesAsync(parameters);
 
             //Assert
             Assert.Equal(10, serviceItems.ToList().Count);
@@ -33,18 +39,17 @@ namespace InnoClinic.ServicesAPI.Tests.Repositories
         public async Task GetAllServicesAsync_WithParametersEqualsZero_ReturnsAllItems()
         {
             //Arrange
-            ServiceRepository service;
             var services = new Fixture().CreateMany<Service>(20).AsQueryable();
-            var repositoryContextMock = services.BuildMockDbSet();
+            var dbSetMock = services.BuildMockDbSet();
+
             var parameters = new ServiceParameters();
             parameters.PageNumber = 0;
             parameters.PageSize = 0;
-            var contextMock = new Mock<RepositoryContext>();
-            contextMock.Setup(x => x.Set<Service>()).Returns(repositoryContextMock.Object);
-            service = new ServiceRepository(contextMock.Object);
+
+            repositoryContextMock.Setup(x => x.Set<Service>()).Returns(dbSetMock.Object);
 
             //Act
-            var serviceItems = await service.GetAllServicesAsync(parameters);
+            var serviceItems = await serviceRepository.GetAllServicesAsync(parameters);
 
             //Assert
             Assert.Equal(20, serviceItems.ToList().Count);
