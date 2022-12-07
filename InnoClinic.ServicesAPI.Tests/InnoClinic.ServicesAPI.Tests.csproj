@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InnoClinic.ServicesAPI\InnoClinic.ServicesAPI.csproj" />
     <ProjectReference Include="..\ServicesAPI\ServicesAPI.csproj" />
   </ItemGroup>
 
