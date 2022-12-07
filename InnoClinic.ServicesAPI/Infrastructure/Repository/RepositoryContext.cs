@@ -6,11 +6,15 @@ namespace ServicesAPI.Infrastructure.Repository
 {
     public class RepositoryContext : DbContext
     {
-        public DbSet<Service> Services { get; set; }
-        public DbSet<ServiceCategory> ServiceCategories { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServiceCategory> ServiceCategories { get; set; }
 
         public RepositoryContext(DbContextOptions options)
             : base(options)
+        {
+        }
+
+        public RepositoryContext()
         {
         }
 

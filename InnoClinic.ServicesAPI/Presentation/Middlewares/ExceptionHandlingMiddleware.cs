@@ -30,7 +30,7 @@ namespace ServicesAPI.Presentation.Middlewares
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = exception switch
             {
-                BadRequestException => StatusCodes.Status400BadRequest,
+                CustomNullReferenceException => StatusCodes.Status400BadRequest,
                 NotFoundException => StatusCodes.Status404NotFound,
                 _ => StatusCodes.Status500InternalServerError
             };
