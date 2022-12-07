@@ -28,7 +28,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         {
             //Arrange
             var request = new HttpRequestMessage(HttpMethod.Get,
-                $"/api/service" + $"?PageNumber={pageNumber}&PageSize={pageSize}");
+                $"/api/services" + $"?PageNumber={pageNumber}&PageSize={pageSize}");
             var serviceToCompare = new Service()
             {
                 Id = new Guid("8c6d093c-c52c-4a9b-709b-08dac166520c"),
@@ -58,7 +58,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
             var pageSize = 20;
             var pageNumber = 20;
             var request = new HttpRequestMessage(HttpMethod.Get,
-                $"/api/service" + $"?PageNumber={pageNumber}&PageSize={pageSize}");
+                $"/api/services" + $"?PageNumber={pageNumber}&PageSize={pageSize}");
 
             //Act
             var response = await client.SendAsync(request);
@@ -74,7 +74,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task GetService_WithExistingId_ReturnsOK(string serviceId)
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/service/{serviceId}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/services/{serviceId}");
             var serviceToCompare = new Service()
             {
                 Id = new Guid("0d6b7dc6-b351-4b72-ab6a-08dad78540c0"),
@@ -101,7 +101,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task GetService_WithNotExistingId_ReturnsNotFound(string serviceId)
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/service/{serviceId}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/api/services/{serviceId}");
 
             //Act
             var response = await client.SendAsync(request);
@@ -114,7 +114,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task CreateService_WithValidObjectPassed_ReturnsCreated()
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Post, $"/api/service");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"/api/services");
 
             var service = new ServiceForCreationDto()
             {
@@ -142,7 +142,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task CreateService_WithInvalidObjectPassed_ReturnsBadRequest()
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Post, $"/api/service");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"/api/services");
 
             var service = new ServiceForCreationDto()
             {
@@ -167,7 +167,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         {
             //Arrange
             var request = new HttpRequestMessage(HttpMethod.Delete,
-                $"/api/service/{serviceId}");
+                $"/api/services/{serviceId}");
 
             //Act
             var response = await client.SendAsync(request);
@@ -182,7 +182,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         {
             //Arrange
             var request = new HttpRequestMessage(HttpMethod.Delete,
-                $"/api/service/{serviceId}");
+                $"/api/services/{serviceId}");
 
             //Act
             var response = await client.SendAsync(request);
@@ -196,7 +196,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task UpdateService_WithExistingIdAndValidObject_ReturnsNoContent(string serviceId)
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Put, $"/api/service/{serviceId}");
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/api/services/{serviceId}");
 
             var serviceForCreation = new ServiceForCreationDto()
             {
@@ -221,7 +221,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task UpdateService_WithNotExistingIdAndValidObject_ReturnsNotFound(string serviceId)
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Put, $"/api/service/{serviceId}");
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/api/services/{serviceId}");
 
             var service = new ServiceForCreationDto()
             {
@@ -246,7 +246,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
         public async Task UpdateService_WithExistingIdAndInvalidObject_ReturnsBadRequest(string serviceId)
         {
             //Arrange
-            var request = new HttpRequestMessage(HttpMethod.Put, $"/api/service/{serviceId}");
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/api/services/{serviceId}");
 
             var service = new ServiceForCreationDto()
             {

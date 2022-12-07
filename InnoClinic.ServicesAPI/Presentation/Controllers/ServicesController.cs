@@ -19,7 +19,7 @@ namespace ServicesAPI.Controllers
             _serviceManager = serviceManager;
         }
 
-        [Authorize(Roles = nameof(UserRole.Doctor))]
+        //[Authorize(Roles = nameof(UserRole.Doctor))]
         [HttpGet]
         public async Task<IActionResult> GetServices([FromQuery] ServiceParameters serviceParameters)
         {
