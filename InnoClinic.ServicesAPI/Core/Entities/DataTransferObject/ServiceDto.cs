@@ -1,11 +1,14 @@
-﻿namespace ServicesAPI.Core.Entities.DataTransferObject
+﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
+using System.ComponentModel.DataAnnotations;
+
+namespace InnoClinic.ServicesAPI.Core.Entities.DataTransferObject
 {
     public class ServiceDto
     {
         public Guid Id { get; set; }
         public string ServiceName { get; set; }
         public decimal Price { get; set; }
-        public string SpecializationName { get; set; }
-        public ServiceCategoryDto ServiceCategory { get; set; }
+        public Specialization Specialization { get; set; }
+        public ServiceCategory ServiceCategory { get; set; }
     }
 }

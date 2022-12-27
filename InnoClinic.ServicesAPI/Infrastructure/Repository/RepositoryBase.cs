@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Infrastructure.Repository;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
 using System.Linq.Expressions;
 
 
-namespace ServicesAPI.Core.Repository
+namespace InnoClinic.ServicesAPI.Core.Repository
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {

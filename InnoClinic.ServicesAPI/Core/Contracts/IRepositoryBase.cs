@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace ServicesAPI.Core.Contracts
+namespace InnoClinic.ServicesAPI.Core.Contracts
 {
     public interface IRepositoryBase<T>
     {

@@ -5,9 +5,9 @@ namespace InnoClinic.ServicesAPI.Core.Entities.Models
     public class Specialization
     {
         public Guid Id { get; set; }
-        //[Required]
+        [Required]
         public string Name { get; set; }
-        //[Required]
+        [Required]
         public bool Status { get; set; }
     }
 }

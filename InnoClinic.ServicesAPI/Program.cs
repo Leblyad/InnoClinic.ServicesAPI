@@ -1,4 +1,4 @@
-using ServicesAPI.Extensions;
+using InnoClinic.ServicesAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

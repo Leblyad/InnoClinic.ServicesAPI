@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace ServicesAPI.Core.Entities.Models
+namespace InnoClinic.ServicesAPI.Core.Entities.Models
 {
     public class ErrorDetails
     {

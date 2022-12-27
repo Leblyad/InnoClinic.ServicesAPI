@@ -1,4 +1,4 @@
-﻿namespace ServicesAPI.Core.Exceptions
+﻿namespace InnoClinic.ServicesAPI.Core.Exceptions
 {
     public abstract class CustomNullReferenceException : NullReferenceException
     {

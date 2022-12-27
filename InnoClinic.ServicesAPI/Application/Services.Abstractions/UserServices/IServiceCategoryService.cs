@@ -1,7 +1,7 @@
-﻿using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.QueryParameters;
+﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 
-namespace ServicesAPI.Core.Services.Abstractions.UserServices
+namespace InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices
 {
     public interface IServiceCategoryService
     {

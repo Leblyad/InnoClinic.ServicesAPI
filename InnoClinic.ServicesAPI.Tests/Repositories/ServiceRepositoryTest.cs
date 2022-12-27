@@ -1,10 +1,10 @@
 ﻿using AutoFixture;
 using MockQueryable.Moq;
 using Moq;
-using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Core.Repository.UserClasses;
-using ServicesAPI.Infrastructure.Repository;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Core.Repository.UserClasses;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
 
 namespace InnoClinic.ServicesAPI.Tests.Repositories
 {

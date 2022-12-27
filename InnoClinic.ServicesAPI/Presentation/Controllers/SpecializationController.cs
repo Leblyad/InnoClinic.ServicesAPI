@@ -9,7 +9,6 @@ namespace InnoClinic.ServicesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
     public class SpecializationController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

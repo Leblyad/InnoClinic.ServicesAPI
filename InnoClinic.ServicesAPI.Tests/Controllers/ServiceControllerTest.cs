@@ -1,6 +1,6 @@
 ﻿using InnoClinic.ServicesAPI.Tests.Configuration;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;

@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Repository;
-using ServicesAPI.Core.Services;
-using ServicesAPI.Core.Services.Abstractions;
-using ServicesAPI.Infrastructure.Repository;
-using ServicesAPI.Presentation.Middlewares;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Core.Repository;
+using InnoClinic.ServicesAPI.Core.Services;
+using InnoClinic.ServicesAPI.Core.Services.Abstractions;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using InnoClinic.ServicesAPI.Presentation.Middlewares;
 using System.Reflection;
 
-namespace ServicesAPI.Extensions
+namespace InnoClinic.ServicesAPI.Extensions
 {
     public static class ServiceExtensions
     {

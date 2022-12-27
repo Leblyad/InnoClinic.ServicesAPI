@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
 
-namespace ServicesAPI.Services.MappingProfiles
+namespace InnoClinic.ServicesAPI.Services.MappingProfiles
 {
     public class ServiceMappingProfile : Profile
     {

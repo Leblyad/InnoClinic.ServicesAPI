@@ -1,7 +1,7 @@
-﻿using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Exceptions;
+﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Exceptions;
 
-namespace ServicesAPI.Presentation.Middlewares
+namespace InnoClinic.ServicesAPI.Presentation.Middlewares
 {
     public sealed class ExceptionHandlingMiddleware
     {

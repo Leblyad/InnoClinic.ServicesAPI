@@ -1,6 +1,6 @@
-﻿using ServicesAPI.Core.Entities.DataTransferObject;
+﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
 
-namespace ServicesAPI.Application.Services.Validation
+namespace InnoClinic.ServicesAPI.Application.Services.Validation
 {
     public class ServiceCategoryForUpdateValidator : ServiceCategoryBaseValidator<ServiceCategoryForUpdateDto>
     {

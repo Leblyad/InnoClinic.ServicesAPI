@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ServicesAPI.Core.Contracts.Repositories;
-using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Infrastructure.Repository;
+using InnoClinic.ServicesAPI.Core.Contracts.Repositories;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
 
-namespace ServicesAPI.Core.Repository.UserClasses
+namespace InnoClinic.ServicesAPI.Core.Repository.UserClasses
 {
     public class ServiceRepository : RepositoryBase<Service>, IServiceRepository
     {
@@ -32,14 +32,17 @@ namespace ServicesAPI.Core.Repository.UserClasses
                 .Skip((serviceParameters.PageNumber - 1) * serviceParameters.PageSize)
                 .Take(serviceParameters.PageSize)
                 .Include(service => service.ServiceCategory)
+                .Include(service => service.Specialization)
                 .ToListAsync() :
             await FindAll(trackChanges)
                 .Include(service => service.ServiceCategory)
+                .Include(service => service.Specialization)
                 .ToListAsync();
 
         public async Task<Service> GetServiceAsync(Guid serviceId, bool trackChanges = false) =>
             await FindByCondition(service => service.Id.Equals(serviceId), trackChanges)
                 .Include(service => service.ServiceCategory)
+                .Include(service => service.Specialization)
                 .SingleOrDefaultAsync();
     }
 }

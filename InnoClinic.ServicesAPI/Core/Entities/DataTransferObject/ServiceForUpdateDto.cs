@@ -1,4 +1,4 @@
-﻿namespace ServicesAPI.Core.Entities.DataTransferObject
+﻿namespace InnoClinic.ServicesAPI.Core.Entities.DataTransferObject
 {
     public class ServiceForUpdateDto : ServiceForManipulationDto
     {
