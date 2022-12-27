@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InnoClinic.ServicesAPI.Controllers
 {

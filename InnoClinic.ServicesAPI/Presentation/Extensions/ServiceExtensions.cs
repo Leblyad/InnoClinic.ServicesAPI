@@ -1,15 +1,14 @@
-﻿using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Serilog;
+﻿using FluentValidation.AspNetCore;
 using InnoClinic.ServicesAPI.Core.Contracts;
 using InnoClinic.ServicesAPI.Core.Repository;
 using InnoClinic.ServicesAPI.Core.Services;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions;
 using InnoClinic.ServicesAPI.Infrastructure.Repository;
 using InnoClinic.ServicesAPI.Presentation.Middlewares;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Reflection;
 
 namespace InnoClinic.ServicesAPI.Extensions

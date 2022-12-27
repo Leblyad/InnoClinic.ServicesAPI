@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using InnoClinic.ServicesAPI.Core.Entities.Models;
 
 namespace InnoClinic.ServicesAPI.Core.Entities.Configuration
 {
@@ -18,7 +18,7 @@ namespace InnoClinic.ServicesAPI.Core.Entities.Configuration
 
             builder.HasData(new List<Service>()
             {
-                new Service() { Id = new Guid("8c6d093c-c52c-4a9b-709b-08dac166520c"), Price = 100, ServiceName = "SomeName1", 
+                new Service() { Id = new Guid("8c6d093c-c52c-4a9b-709b-08dac166520c"), Price = 100, ServiceName = "SomeName1",
                     SpecializationId = new Guid("acc08d75-50ea-4689-84cc-bc4b41138301"),
                     ServiceCategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")},
                 new Service() { Id = new Guid("24d92a89-a088-4687-9947-08dac62592e6"), Price = 90, ServiceName = "SomeName2",

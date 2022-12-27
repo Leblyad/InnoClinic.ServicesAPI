@@ -1,9 +1,9 @@
-﻿using InnoClinic.ServicesAPI.Presentation.Enums;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions;
+using InnoClinic.ServicesAPI.Presentation.Enums;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InnoClinic.ServicesAPI.Controllers
 {

@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using InnoClinic.ServicesAPI.Core.Contracts;
+﻿using InnoClinic.ServicesAPI.Core.Contracts;
 using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 

@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using InnoClinic.ServicesAPI.Core.Entities.Configuration;
+﻿using InnoClinic.ServicesAPI.Core.Entities.Configuration;
 using InnoClinic.ServicesAPI.Core.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InnoClinic.ServicesAPI.Infrastructure.Repository
 {

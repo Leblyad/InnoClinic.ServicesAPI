@@ -1,5 +1,4 @@
 ﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
-using System.ComponentModel.DataAnnotations;
 
 namespace InnoClinic.ServicesAPI.Core.Entities.DataTransferObject
 {

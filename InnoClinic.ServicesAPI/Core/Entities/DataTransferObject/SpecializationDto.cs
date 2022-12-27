@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace InnoClinic.ServicesAPI.Core.Entities.DataTransferObject
+﻿namespace InnoClinic.ServicesAPI.Core.Entities.DataTransferObject
 {
     public class SpecializationDto
     {

@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using InnoClinic.ServicesAPI.Core.Entities.Models;
 
 namespace InnoClinic.ServicesAPI.Core.Entities.Configuration
 {

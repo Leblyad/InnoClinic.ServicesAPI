@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using InnoClinic.ServicesAPI.Core.Contracts.Repositories;
+﻿using InnoClinic.ServicesAPI.Core.Contracts.Repositories;
 using InnoClinic.ServicesAPI.Core.Entities.Models;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace InnoClinic.ServicesAPI.Core.Repository.UserClasses
 {
