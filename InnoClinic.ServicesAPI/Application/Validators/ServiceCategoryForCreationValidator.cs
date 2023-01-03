@@ -1,4 +1,4 @@
-﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+﻿using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 
 namespace InnoClinic.ServicesAPI.Application.Services.Validation
 {

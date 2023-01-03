@@ -37,7 +37,6 @@ namespace InnoClinic.ServicesAPI.Core.Repository.UserClasses
                 .OrderBy(category => category.CategoryName)
                 .ToListAsync();
 
-
         public async Task<ServiceCategory> GetServiceCategoryAsync(Guid serviceCategoryId, bool trackChanges = false) =>
             await FindByCondition(serviceCategory => serviceCategory.Id.Equals(serviceCategoryId), trackChanges)
                 .SingleOrDefaultAsync();

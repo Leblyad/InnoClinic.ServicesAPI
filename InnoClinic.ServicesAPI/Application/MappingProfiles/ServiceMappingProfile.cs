@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.SharedModels;
 
 namespace InnoClinic.ServicesAPI.Services.MappingProfiles
 {
@@ -13,6 +14,8 @@ namespace InnoClinic.ServicesAPI.Services.MappingProfiles
             CreateMap<ServiceForCreationDto, Service>();
 
             CreateMap<ServiceForUpdateDto, Service>().ReverseMap();
+
+            CreateMap<Service, ServiceUpdatedMessage>();
         }
     }
 }

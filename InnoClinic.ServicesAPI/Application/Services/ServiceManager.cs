@@ -3,6 +3,7 @@ using InnoClinic.ServicesAPI.Core.Contracts;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices;
 using InnoClinic.ServicesAPI.Core.Services.UserServices;
+using MassTransit;
 
 namespace InnoClinic.ServicesAPI.Core.Services
 {
@@ -12,9 +13,9 @@ namespace InnoClinic.ServicesAPI.Core.Services
         private readonly Lazy<IServiceCategoryService> _lazyServiceCategoryService;
         private readonly Lazy<ISpecializationService> _lazySpecializationService;
 
-        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper, IPublishEndpoint publisher)
         {
-            _lazyServiceService = new Lazy<IServiceService>(() => new ServiceService(repositoryManager, mapper));
+            _lazyServiceService = new Lazy<IServiceService>(() => new ServiceService(repositoryManager, mapper, publisher));
             _lazyServiceCategoryService = new Lazy<IServiceCategoryService>(() => new ServiceCategoryService(repositoryManager, mapper));
             _lazySpecializationService = new Lazy<ISpecializationService>(() => new SpecializationService(repositoryManager, mapper));
         }

@@ -3,14 +3,17 @@ using InnoClinic.ServicesAPI.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.ConfigureCors();
 builder.Logging.ConfigureLogger(builder.Configuration);
 builder.Services.ConfigureSqlContext(builder.Configuration);
-builder.Services.ConfigureCors();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.ConfigureValidatorsAndControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers();
+builder.Services.ConfigureValidator();
 builder.Services.ConfigureSwagger();
+builder.Services.ConfigureMassTransit();
 builder.Services.ConfigureJWTAuthentification(builder.Configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddAuthorization();

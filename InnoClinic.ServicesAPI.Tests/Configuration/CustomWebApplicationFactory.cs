@@ -7,6 +7,7 @@ using InnoClinic.ServicesAPI.Core.Repository;
 using InnoClinic.ServicesAPI.Core.Services;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions;
 using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using MassTransit;
 
 namespace InnoClinic.ServicesAPI.Tests.Configuration
 {
@@ -30,6 +31,10 @@ namespace InnoClinic.ServicesAPI.Tests.Configuration
 
                 services.AddScoped<IServiceManager, ServiceManager>();
                 services.AddScoped<IRepositoryManager, RepositoryManager>();
+                services.AddMassTransit(x =>
+                {
+                    x.UsingRabbitMq();
+                });
 
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())

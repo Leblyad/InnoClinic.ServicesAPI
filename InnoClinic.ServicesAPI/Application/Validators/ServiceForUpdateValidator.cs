@@ -1,8 +1,13 @@
-﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+﻿using FluentValidation;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 
 namespace InnoClinic.ServicesAPI.Application.Services.Validators
 {
-    public class ServiceForUpdateValidator : ServiceBaseValidator<ServiceForUpdateDto>
+    public class ServiceForUpdateValidator : AbstractValidator<ServiceForUpdateDto>
     {
+        public ServiceForUpdateValidator()
+        {
+            RuleFor(s => s.ServiceName).Length(2, 30);
+        }
     }
 }

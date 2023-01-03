@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InnoClinic.ServicesAPI.Core.Entities.DataTransferObject
+namespace InnoClinic.ServicesAPI.Application.Entities.DataTransferObject
 {
     public abstract class ServiceCategoryForManipulationDto
     {

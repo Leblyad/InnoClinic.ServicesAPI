@@ -1,9 +1,8 @@
 ﻿namespace InnoClinic.ServicesAPI.Core.Exceptions
 {
-    public abstract class CustomNullReferenceException : NullReferenceException
+    public class CustomNullReferenceException : NullReferenceException
     {
-        protected CustomNullReferenceException(string message)
-            : base(message)
+        public CustomNullReferenceException(Type type) : base($"Object of type: {type.Name} is null.")
         { }
     }
 }

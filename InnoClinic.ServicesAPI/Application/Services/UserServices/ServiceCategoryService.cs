@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Contracts;
-using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.Models;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 using InnoClinic.ServicesAPI.Core.Exceptions.UserClassExceptions;

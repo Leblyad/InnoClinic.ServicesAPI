@@ -1,4 +1,4 @@
-﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+﻿using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 
 namespace InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices

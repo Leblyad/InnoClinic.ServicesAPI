@@ -1,8 +1,6 @@
-﻿using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
+﻿using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions;
-using InnoClinic.ServicesAPI.Presentation.Enums;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InnoClinic.ServicesAPI.Controllers
@@ -18,7 +16,7 @@ namespace InnoClinic.ServicesAPI.Controllers
             _serviceManager = serviceManager;
         }
 
-        [Authorize(Roles = nameof(UserRole.Doctor))]
+        //[Authorize(Roles = nameof(UserRole.Doctor))]
         [HttpGet]
         public async Task<IActionResult> GetServices([FromQuery] ServiceParameters serviceParameters)
         {

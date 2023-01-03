@@ -31,15 +31,12 @@ namespace InnoClinic.ServicesAPI.Core.Repository.UserClasses
             await FindAll(trackChanges)
                 .Skip((specializationParameters.PageNumber - 1) * specializationParameters.PageSize)
                 .Take(specializationParameters.PageSize)
-                //.Include(specialization => specialization.SpecializationCategory)
                 .ToListAsync() :
             await FindAll(trackChanges)
-                //.Include(specialization => specialization.SpecializationCategory)
                 .ToListAsync();
 
         public async Task<Specialization> GetSpecializationAsync(Guid specializationId, bool trackChanges = false) =>
             await FindByCondition(specialization => specialization.Id.Equals(specializationId), trackChanges)
-                //.Include(specialization => specialization.SpecializationCategory)
                 .SingleOrDefaultAsync();
     }
 }

@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Contracts;
-using InnoClinic.ServicesAPI.Core.Entities.DataTransferObject;
 using InnoClinic.ServicesAPI.Core.Entities.Models;
 using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Core.Exceptions;
 using InnoClinic.ServicesAPI.Core.Exceptions.UserClassExceptions;
 using InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices;
 
@@ -23,7 +24,7 @@ namespace InnoClinic.ServicesAPI.Core.Services.UserServices
         {
             if (specialization == null)
             {
-                throw new SpecializationNullReferenceException(typeof(SpecializationForCreationDto));
+                throw new CustomNullReferenceException(typeof(SpecializationForCreationDto));
             }
 
             var specializationEntity = _mapper.Map<Specialization>(specialization);
@@ -67,7 +68,7 @@ namespace InnoClinic.ServicesAPI.Core.Services.UserServices
         {
             if (specialization == null)
             {
-                throw new SpecializationNullReferenceException(typeof(SpecializationForUpdateDto));
+                throw new CustomNullReferenceException(typeof(SpecializationForUpdateDto));
             }
 
             var specializationEntity = await _repositoryManager.Specialization.GetSpecializationAsync(specializationId, trackChanges: true);
