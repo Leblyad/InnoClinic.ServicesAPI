@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServicesAPI.Core.Contracts.Repositories;
-using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Infrastructure.Repository;
+﻿using InnoClinic.ServicesAPI.Core.Contracts.Repositories;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 
-namespace ServicesAPI.Core.Repository.UserClasses
+namespace InnoClinic.ServicesAPI.Core.Repository.UserClasses
 {
     public class ServiceCategoryRepository : RepositoryBase<ServiceCategory>, IServiceCategoryRepository
     {
@@ -36,7 +36,6 @@ namespace ServicesAPI.Core.Repository.UserClasses
              await FindAll(trackChanges)
                 .OrderBy(category => category.CategoryName)
                 .ToListAsync();
-
 
         public async Task<ServiceCategory> GetServiceCategoryAsync(Guid serviceCategoryId, bool trackChanges = false) =>
             await FindByCondition(serviceCategory => serviceCategory.Id.Equals(serviceCategoryId), trackChanges)

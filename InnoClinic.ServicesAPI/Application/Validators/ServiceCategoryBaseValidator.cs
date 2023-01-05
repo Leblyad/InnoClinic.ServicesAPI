@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using ServicesAPI.Core.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
 
-namespace ServicesAPI.Application.Services.Validation
+namespace InnoClinic.ServicesAPI.Application.Services.Validation
 {
     public class ServiceCategoryBaseValidator<T> : AbstractValidator<T> where T : ServiceCategoryForManipulationDto
     {

@@ -1,5 +1,5 @@
-﻿using ServicesAPI.Application.Services.Validation;
-using ServicesAPI.Application.Services.Validators;
+﻿using InnoClinic.ServicesAPI.Application.Services.Validation;
+using InnoClinic.ServicesAPI.Application.Services.Validators;
 
 namespace InnoClinic.ServicesAPI.Application.Validators
 {

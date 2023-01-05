@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Repository;
-using ServicesAPI.Core.Services;
-using ServicesAPI.Core.Services.Abstractions;
-using ServicesAPI.Infrastructure.Repository;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Core.Repository;
+using InnoClinic.ServicesAPI.Core.Services;
+using InnoClinic.ServicesAPI.Core.Services.Abstractions;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using MassTransit;
 
 namespace InnoClinic.ServicesAPI.Tests.Configuration
 {
@@ -30,6 +31,10 @@ namespace InnoClinic.ServicesAPI.Tests.Configuration
 
                 services.AddScoped<IServiceManager, ServiceManager>();
                 services.AddScoped<IRepositoryManager, RepositoryManager>();
+                services.AddMassTransit(x =>
+                {
+                    x.UsingRabbitMq();
+                });
 
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())

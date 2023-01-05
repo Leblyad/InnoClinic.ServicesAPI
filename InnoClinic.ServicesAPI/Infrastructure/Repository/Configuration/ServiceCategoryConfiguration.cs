@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ServicesAPI.Core.Entities.Models;
 
-namespace ServicesAPI.Core.Entities.Configuration
+namespace InnoClinic.ServicesAPI.Core.Entities.Configuration
 {
     public class ServiceCategoryConfiguration : IEntityTypeConfiguration<ServiceCategory>
     {

@@ -1,4 +1,4 @@
-﻿namespace ServicesAPI.Core.Entities.QueryParameters
+﻿namespace InnoClinic.ServicesAPI.Core.Entities.QueryParameters
 {
     public abstract class QueryStringParameters
     {

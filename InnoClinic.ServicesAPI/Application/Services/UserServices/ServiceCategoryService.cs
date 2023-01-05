@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Core.Exceptions.UserClassExceptions;
-using ServicesAPI.Core.Services.Abstractions.UserServices;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Core.Exceptions.UserClassExceptions;
+using InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices;
 
-namespace ServicesAPI.Core.Services.UserServices
+namespace InnoClinic.ServicesAPI.Core.Services.UserServices
 {
     public class ServiceCategoryService : IServiceCategoryService
     {

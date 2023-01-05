@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
+    <PackageReference Include="MassTransit" Version="8.0.9" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
@@ -30,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InnoClinic.ServicesAPI\InnoClinic.ServicesAPI.csproj" />
-    <ProjectReference Include="..\ServicesAPI\ServicesAPI.csproj" />
+    <ProjectReference Include="..\InnoClinic.ServicesAPI\InnoClinic.ServicesAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

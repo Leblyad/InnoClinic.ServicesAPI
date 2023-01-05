@@ -1,18 +1,18 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Core.Repository;
+using InnoClinic.ServicesAPI.Core.Services;
+using InnoClinic.ServicesAPI.Core.Services.Abstractions;
+using InnoClinic.ServicesAPI.Infrastructure.Repository;
+using InnoClinic.ServicesAPI.Presentation.Middlewares;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Repository;
-using ServicesAPI.Core.Services;
-using ServicesAPI.Core.Services.Abstractions;
-using ServicesAPI.Infrastructure.Repository;
-using ServicesAPI.Presentation.Middlewares;
-using System.Reflection;
 
-namespace ServicesAPI.Extensions
+namespace InnoClinic.ServicesAPI.Extensions
 {
     public static class ServiceExtensions
     {
@@ -52,11 +52,11 @@ namespace ServicesAPI.Extensions
             logging.AddSerilog(logger);
         }
 
-        public static void ConfigureValidatorsAndControllers(this IServiceCollection services)
+        public static void ConfigureValidator(this IServiceCollection services)
         {
-            services.AddControllers()
-                .AddFluentValidation(c =>
-                c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddFluentValidationAutoValidation()
+            .AddFluentValidationClientsideAdapters()
+            .AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         public static void ConfigureJWTAuthentification(this IServiceCollection services, IConfiguration configuration)
@@ -101,5 +101,13 @@ namespace ServicesAPI.Extensions
                     }
                 });
             });
+
+        public static void ConfigureMassTransit(this IServiceCollection services)
+        {
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq();
+            });
+        }
     }
 }

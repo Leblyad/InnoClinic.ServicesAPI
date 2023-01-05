@@ -2,12 +2,14 @@ using AutoFixture;
 using AutoMapper;
 using MockQueryable.Moq;
 using Moq;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Core.Exceptions.UserClassExceptions;
-using ServicesAPI.Core.Services.UserServices;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Core.Exceptions.UserClassExceptions;
+using InnoClinic.ServicesAPI.Core.Services.UserServices;
+using MassTransit;
+using InnoClinic.ServicesAPI.Core.Exceptions;
 
 namespace InnoClinic.ServicesAPI.Tests.Services
 {
@@ -16,12 +18,14 @@ namespace InnoClinic.ServicesAPI.Tests.Services
         private readonly ServiceService service;
         private readonly Mock<IRepositoryManager> repositoryMock;
         private readonly Mock<IMapper> mapperMock;
+        private readonly Mock<IPublishEndpoint> endpointMock;
 
         public ServiceServiceTest()
         {
             repositoryMock = new Mock<IRepositoryManager>();
             mapperMock = new Mock<IMapper>();
-            service = new ServiceService(repositoryMock.Object, mapperMock.Object);
+            endpointMock = new Mock<IPublishEndpoint>();
+            service = new ServiceService(repositoryMock.Object, mapperMock.Object, endpointMock.Object);
         }
 
         [Fact]
@@ -37,16 +41,14 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
                 Price = 10,
-                ServiceName = "1",
-                SpecializationName = "1"
+                Name = "1",
             };
 
             var serviceDto = new ServiceDto()
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
                 Price = 10,
-                ServiceName = "1",
-                SpecializationName = "1"
+                Name = "1",
             };
 
             var serviceItems = new Fixture().CreateMany<Service>(19);
@@ -156,21 +158,21 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             //Arrange
             var serviceForcreation = new ServiceForCreationDto()
             {
-                ServiceName = "1",
+                Name = "1",
                 Price = 10
             };
 
             var serviceDto = new ServiceDto()
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
-                ServiceName = "1",
+                Name = "1",
                 Price = 10
             };
 
             var serviceEntity = new Service()
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
-                ServiceName = "1",
+                Name = "1",
                 Price = 10
             };
 
@@ -196,7 +198,7 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             var createService = async () => await service.CreateServiceAsync(serviceForcreation);
 
             //Act
-            var exception = await Assert.ThrowsAsync<ServiceNullReferenceException>(createService);
+            var exception = await Assert.ThrowsAsync<CustomNullReferenceException>(createService);
 
             //Assert
             Assert.Equal($"Object of type: {typeof(ServiceForCreationDto).Name} is null.", exception.Message);
@@ -280,7 +282,7 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             var serviceEntity = new Service()
             { 
                 Id = serviceId,
-                ServiceName = serviceForUpdate.ServiceName,
+                Name = serviceForUpdate.Name,
                 Price = serviceForUpdate.Price
             };
 
@@ -325,7 +327,7 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             mapperMock.Setup(x => x.Map<Service>(serviceForUpdate)).Returns(serviceEntity);
 
             //Act
-            var exception = await Assert.ThrowsAsync<ServiceNullReferenceException>(updateService);
+            var exception = await Assert.ThrowsAsync<CustomNullReferenceException>(updateService);
 
             //Assert
             Assert.Equal($"Object of type: {typeof(ServiceForUpdateDto).Name} is null.", exception.Message);

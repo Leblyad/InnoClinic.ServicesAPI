@@ -1,10 +1,11 @@
-﻿using ServicesAPI.Core.Services.Abstractions.UserServices;
+﻿using InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices;
 
-namespace ServicesAPI.Core.Services.Abstractions
+namespace InnoClinic.ServicesAPI.Core.Services.Abstractions
 {
     public interface IServiceManager
     {
         IServiceCategoryService CategoryService { get; }
         IServiceService Service { get; }
+        ISpecializationService Specialization { get; }
     }
 }

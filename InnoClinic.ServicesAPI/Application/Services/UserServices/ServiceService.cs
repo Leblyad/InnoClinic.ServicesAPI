@@ -1,29 +1,34 @@
 ﻿using AutoMapper;
-using ServicesAPI.Core.Contracts;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Core.Exceptions.UserClassExceptions;
-using ServicesAPI.Core.Services.Abstractions.UserServices;
+using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Contracts;
+using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Core.Exceptions;
+using InnoClinic.ServicesAPI.Core.Exceptions.UserClassExceptions;
+using InnoClinic.ServicesAPI.Core.Services.Abstractions.UserServices;
+using InnoClinic.SharedModels;
+using MassTransit;
 
-namespace ServicesAPI.Core.Services.UserServices
+namespace InnoClinic.ServicesAPI.Core.Services.UserServices
 {
     public class ServiceService : IServiceService
     {
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public ServiceService(IRepositoryManager repositoryManager, IMapper mapper)
+        public ServiceService(IRepositoryManager repositoryManager, IMapper mapper, IPublishEndpoint publishEndpoint)
         {
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            _publishEndpoint = publishEndpoint;
         }
 
         public async Task<ServiceDto> CreateServiceAsync(ServiceForCreationDto service)
         {
             if (service == null)
             {
-                throw new ServiceNullReferenceException(typeof(ServiceForCreationDto));
+                throw new CustomNullReferenceException(typeof(ServiceForCreationDto));
             }
 
             var serviceEntity = _mapper.Map<Service>(service);
@@ -67,7 +72,7 @@ namespace ServicesAPI.Core.Services.UserServices
         {
             if (service == null)
             {
-                throw new ServiceNullReferenceException(typeof(ServiceForUpdateDto));
+                throw new CustomNullReferenceException(typeof(ServiceForUpdateDto));
             }
 
             var serviceEntity = await _repositoryManager.Service.GetServiceAsync(serviceId, trackChanges: true);
@@ -79,7 +84,19 @@ namespace ServicesAPI.Core.Services.UserServices
 
             _mapper.Map(service, serviceEntity);
 
+            var message = _mapper.Map<ServiceUpdatedMessage>(serviceEntity);
+
             await _repositoryManager.SaveAsync();
+
+            using (var tokenSrc = new CancellationTokenSource())
+            {
+                tokenSrc.CancelAfter(5000);
+                try
+                {
+                    await _publishEndpoint.Publish(message, tokenSrc.Token);
+                }
+                catch { }
+            }
         }
     }
 }

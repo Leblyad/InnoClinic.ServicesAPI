@@ -1,4 +1,4 @@
-﻿namespace ServicesAPI.Core.Entities.DataTransferObject
+﻿namespace InnoClinic.ServicesAPI.Application.Entities.DataTransferObject
 {
     public class ServiceCategoryDto
     {

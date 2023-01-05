@@ -1,7 +1,7 @@
-﻿using ServicesAPI.Core.Entities.Models;
-using ServicesAPI.Core.Entities.QueryParameters;
+﻿using InnoClinic.ServicesAPI.Core.Entities.Models;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
 
-namespace ServicesAPI.Core.Contracts.Repositories
+namespace InnoClinic.ServicesAPI.Core.Contracts.Repositories
 {
     public interface IServiceCategoryRepository
     {

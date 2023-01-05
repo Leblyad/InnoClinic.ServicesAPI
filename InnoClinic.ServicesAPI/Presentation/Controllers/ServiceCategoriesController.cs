@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ServicesAPI.Core.Entities.DataTransferObject;
-using ServicesAPI.Core.Entities.QueryParameters;
-using ServicesAPI.Core.Services.Abstractions;
+﻿using InnoClinic.ServicesAPI.Application.Entities.DataTransferObject;
+using InnoClinic.ServicesAPI.Core.Entities.QueryParameters;
+using InnoClinic.ServicesAPI.Core.Services.Abstractions;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ServicesAPI.Controllers
+namespace InnoClinic.ServicesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
