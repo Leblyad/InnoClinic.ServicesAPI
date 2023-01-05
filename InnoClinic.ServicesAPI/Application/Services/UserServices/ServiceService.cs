@@ -86,6 +86,8 @@ namespace InnoClinic.ServicesAPI.Core.Services.UserServices
 
             var message = _mapper.Map<ServiceUpdatedMessage>(serviceEntity);
 
+            await _repositoryManager.SaveAsync();
+
             using (var tokenSrc = new CancellationTokenSource())
             {
                 tokenSrc.CancelAfter(5000);
@@ -95,8 +97,6 @@ namespace InnoClinic.ServicesAPI.Core.Services.UserServices
                 }
                 catch { }
             }
-
-            await _repositoryManager.SaveAsync();
         }
     }
 }

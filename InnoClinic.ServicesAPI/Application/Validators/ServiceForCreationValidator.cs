@@ -7,7 +7,7 @@ namespace InnoClinic.ServicesAPI.Application.Services.Validators
     {
         public ServiceForCreationValidator()
         {
-            RuleFor(s => s.ServiceName).Length(2, 30);
+            RuleFor(s => s.Name).Length(2, 30);
         }
     }
 }

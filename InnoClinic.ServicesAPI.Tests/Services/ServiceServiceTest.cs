@@ -41,14 +41,14 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
                 Price = 10,
-                ServiceName = "1",
+                Name = "1",
             };
 
             var serviceDto = new ServiceDto()
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
                 Price = 10,
-                ServiceName = "1",
+                Name = "1",
             };
 
             var serviceItems = new Fixture().CreateMany<Service>(19);
@@ -158,21 +158,21 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             //Arrange
             var serviceForcreation = new ServiceForCreationDto()
             {
-                ServiceName = "1",
+                Name = "1",
                 Price = 10
             };
 
             var serviceDto = new ServiceDto()
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
-                ServiceName = "1",
+                Name = "1",
                 Price = 10
             };
 
             var serviceEntity = new Service()
             {
                 Id = new Guid("d976d96d-94d3-4351-9e36-29389e39154a"),
-                ServiceName = "1",
+                Name = "1",
                 Price = 10
             };
 
@@ -282,7 +282,7 @@ namespace InnoClinic.ServicesAPI.Tests.Services
             var serviceEntity = new Service()
             { 
                 Id = serviceId,
-                ServiceName = serviceForUpdate.ServiceName,
+                Name = serviceForUpdate.Name,
                 Price = serviceForUpdate.Price
             };
 

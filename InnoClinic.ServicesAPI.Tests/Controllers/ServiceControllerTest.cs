@@ -33,7 +33,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
             {
                 Id = new Guid("8c6d093c-c52c-4a9b-709b-08dac166520c"),
                 Price = 100,
-                ServiceName = "SomeName1",
+                Name = "SomeName1",
                 SpecializationId = new Guid("acc08d75-50ea-4689-84cc-bc4b41138301"),
                 ServiceCategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
@@ -48,7 +48,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
             Assert.Equal(service.Id, serviceToCompare.Id);
             Assert.Equal(service.Price, serviceToCompare.Price);
             Assert.Equal(service.Specialization.Id, serviceToCompare.SpecializationId);
-            Assert.Equal(service.ServiceName, serviceToCompare.ServiceName);
+            Assert.Equal(service.Name, serviceToCompare.Name);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
             {
                 Id = new Guid("0d6b7dc6-b351-4b72-ab6a-08dad78540c0"),
                 Price = 60,
-                ServiceName = "SomeName5",
+                Name = "SomeName5",
                 SpecializationId = new Guid("acc08d75-50ea-4689-84cc-bc4b41138301"),
                 ServiceCategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6")
             };
@@ -93,7 +93,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
             Assert.Equal(service.Id, serviceToCompare.Id);
             Assert.Equal(service.Price, serviceToCompare.Price);
             Assert.Equal(service.Specialization.Id, serviceToCompare.SpecializationId);
-            Assert.Equal(service.ServiceName, serviceToCompare.ServiceName);
+            Assert.Equal(service.Name, serviceToCompare.Name);
         }
 
         [Theory]
@@ -118,7 +118,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
 
             var service = new ServiceForCreationDto()
             {
-                ServiceName = "SomeName",
+                Name = "SomeName",
                 Price = 100,
                 ServiceCategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                 SpecializationId = new Guid("acc08d75-50ea-4689-84cc-bc4b41138301")
@@ -133,7 +133,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
 
             //Assert
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.Equal(service.ServiceName, serviceResponse.ServiceName);
+            Assert.Equal(service.Name, serviceResponse.Name);
             Assert.Equal(service.SpecializationId, serviceResponse.Specialization.Id);
             Assert.Equal(service.Price, serviceResponse.Price);
         }
@@ -200,7 +200,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
 
             var serviceForCreation = new ServiceForCreationDto()
             {
-                ServiceName = "NewName",
+                Name = "NewName",
                 Price = 1000,
                 ServiceCategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                 SpecializationId = new Guid("acc08d75-50ea-4689-84cc-bc4b41138301"),
@@ -225,7 +225,7 @@ namespace InnoClinic.ServicesAPI.Tests.Controllers
 
             var service = new ServiceForCreationDto()
             {
-                ServiceName = "SomeName",
+                Name = "SomeName",
                 Price = 100,
                 ServiceCategoryId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
                 SpecializationId = new Guid("acc08d75-50ea-4689-84cc-bc4b41138301")

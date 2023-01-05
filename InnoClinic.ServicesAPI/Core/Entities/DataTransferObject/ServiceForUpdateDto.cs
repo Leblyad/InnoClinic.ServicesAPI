@@ -5,7 +5,7 @@ namespace InnoClinic.ServicesAPI.Application.Entities.DataTransferObject
     public class ServiceForUpdateDto
     {
         [Required]
-        public string ServiceName { get; set; }
+        public string Name { get; set; }
         [Required]
         public decimal Price { get; set; }
         [Required]
